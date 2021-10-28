@@ -7,19 +7,23 @@ Master::Master(size_t codeLength, size_t letterCount, size_t guessCount, bool ca
 
 	const string availableLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	if (codeLength < 2) codeLength = 2;
-	if (!canRepeatLetter && letterCount < codeLength) letterCount = codeLength;
-	if (letterCount < 2) letterCount = 2;
-	if (guessCount < 2) guessCount = 2;
-
 	codeLen = codeLength;
 	letterCnt = letterCount;
 	guessCnt = guessCount;
 	repeatLetter = canRepeatLetter;
 
-	for (size_t s = 0; s < letterCnt; s++) {
+	if (codeLen < 2) codeLen = 2;
+	if (!repeatLetter && letterCnt < codeLen) letterCnt = codeLen;
+	if (letterCnt < 2) letterCnt = 2;
+	if (guessCnt < 2) guessCnt = 2;
+
+
+	for (size_t s = 0; s < letterCnt; s++)
 		letters.append(1, availableLetters.at(s));
-	}
+}
+
+Master::~Master()
+{
 }
 
 void Master::Play() {
@@ -45,9 +49,6 @@ void Master::Play() {
 			"I am sorry, you couldn't make it!\nThe code was: " << combo <<
 			"\n--------------------------------\n\n";
 	}
-}
-Master::~Master()
-{
 }
 
 void Master::ShowBoard() {
@@ -97,15 +98,16 @@ string Master::GetInput() {
 
 		if (r) break;
 	}
+
 	return a;
 }
 
 bool Master::CheckInput(string a) {
 	vecChar g;
 
-	for (string::iterator x = a.begin(); x != a.end(); x++) {
+	for (string::iterator x = a.begin(); x != a.end(); x++)
 		g.push_back(*x);
-	}
+
 	guesses.push_back(g);
 
 	int black = 0, white = 0;
