@@ -1,5 +1,3 @@
-//#include <algorithm>
-//#include <ctime>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -9,9 +7,6 @@ typedef std::vector<char> vecChar;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-
-    //srand(unsigned(time(0)));
-
     int codeLen = 0;
     int letterCnt = 27;
     int guessCnt = 0;
